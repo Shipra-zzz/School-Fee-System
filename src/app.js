@@ -154,7 +154,7 @@ app.post("/add-fees/:className/:rollNumber", async (req, res) => {
     const transaction = {
       amountPaid: feesAmount,
       cashierName: req.session.usern, // Assuming you have the admin's name in the session
-      date: new Date(),
+      date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }), // Format date in Indian time
     };
 
     // Push the new transaction to the transaction history array
@@ -209,6 +209,45 @@ app.post("/add-cashier", async (req, res) => {
 
     // Save the new cashier to the database
     await newCashier.save();
+
+    res.redirect("/head");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+// Handle removing a student
+app.post("/remove-student", async (req, res) => {
+  try {
+    const { className, rollNumber } = req.body;
+
+    // Find the student in the database
+    const student = await Student.findOneAndDelete({ className, rollNumber });
+
+    if (!student) {
+      return res.status(404).send("Student not found");
+    }
+
+    res.redirect("/head");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+
+// Handle removing a cashier
+app.post("/remove-cashier", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Find the cashier in the database
+    const cashier = await admin.findOneAndDelete({ email });
+
+    if (!cashier) {
+      return res.status(404).send("Cashier not found");
+    }
 
     res.redirect("/head");
   } catch (error) {

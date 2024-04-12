@@ -109,7 +109,7 @@
     <div>
         <p>Class Name: {{student.className}}</p>
         <p>Roll Number: {{student.rollNumber}}</p>
-        <p>Total Pending Fees: ${{student.pendingFees}}</p>
+        <p>Total Pending Fees: Rs.{{student.pendingFees}}</p>
     </div>
 
     <form id="addFeesForm" action="/add-fees/{{student.className}}/{{student.rollNumber}}" method="POST">
@@ -133,7 +133,7 @@
           {{#each student.transactionHistory}}
           <tr>
             <td>{{this.date}}</td>
-            <td>${{this.amountPaid}}</td>
+            <td>Rs.{{this.amountPaid}}</td>
             <td>{{this.cashierName}}</td>
           </tr>
           {{/each}}
