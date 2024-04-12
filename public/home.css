@@ -54,10 +54,24 @@ body {
     color: #fff;
   }
   .option img {
-    width: 250px; /* Set a specific width */
-    height: 250px; /* Set a specific height */
+    width: 100%; /* Set a specific width */
+    height: 100%; /* Set a specific height */
     object-fit: cover; /* Maintain aspect ratio */
     border-radius: 50%; /* Make the image circular */
     margin-bottom: 10px;
   }
   
+  @media only screen and (max-width: 768px) {
+    .container {
+        margin: 30px; /* Reduce padding */
+    }
+
+    .options{
+      flex-direction: column;
+    }
+
+    .option {
+        width: calc(100% - 20px); /* Set width to full width minus margins */
+        margin-bottom: 10px; /* Adjust margin */
+    }
+}
