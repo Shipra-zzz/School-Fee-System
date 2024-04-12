@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: -moz-linear-gradient(45deg, #02e1ba 0%, #d3f226 29%, #d911f2 66%, #ffa079 100%);
+    background: -webkit-linear-gradient(45deg, #02e1ba 0%,#f2e426 29%,#d911f2 66%,#ffa079 100%);
+    background: linear-gradient(45deg, #022e24 0%,#181617 29%,#10053a 66%,#501924 100%);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+	min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffffb8;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+  
+  form {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  form input[type="number"] {
+    padding: 8px;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  form button[type="submit"] {
+    padding: 8px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #transactionHistory {
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  table td {
+    text-align: center;
+  }
+  
+  a {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    background-color: #0cb71d;
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{student.studentName}}</h1>
+    <div>
+        <p>Class Name: {{student.className}}</p>
+        <p>Roll Number: {{student.rollNumber}}</p>
+        <p>Total Pending Fees: ${{student.pendingFees}}</p>
+    </div>
+
+    <form id="addFeesForm" action="/add-fees/{{student.className}}/{{student.rollNumber}}" method="POST">
+        <label for="feesAmount">Add Fees Amount:</label>
+        <input type="number" id="feesAmount" name="feesAmount" required>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <div id="transactionHistory">
+      <h2>Transaction History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount Paid</th>
+            <th>Cashier/Admin Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each student.transactionHistory}}
+          <tr>
+            <td>{{this.date}}</td>
+            <td>${{this.amountPaid}}</td>
+            <td>{{this.cashierName}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <a href="/admin">Go Back</a>
+  </div>
+  <script defer src="student-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 20px auto;
+  }
+  
+  label {
+    margin-top: 10px;
+    color: black;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="submit"] {
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0062cc;
+  }
+.login_form{
+    pointer-events: none
+}  
+
+
+
+
+.goback{
+  float: right;
+    margin: 10px auto;
+  padding: 10px;
+    background-color: #f82b07;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.goback:hover{
+  background-color: #37d706;
+}
+
+
